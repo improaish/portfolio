@@ -1,14 +1,63 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, Copy, Check, ArrowUpRight } from 'lucide-react';
+import { Mail, MapPin, Send, Copy, Check, ArrowUpRight, Loader2, AlertCircle } from 'lucide-react';
 import { Linkedin, Github, TwitterX, Instagram } from './BrandIcons';
 import { contactData, personalData } from '../data/portfolioData';
 
 export default function Contact({ onCopyEmail, emailCopied }) {
   const { socials } = personalData;
-  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState({ type: '', message: '' });
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = () => {
-    setSubmitted(true);
+  const handleChange = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatus({ type: '', message: '' });
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: 'b8c2d947-3a42-4566-b55b-04e6c34a0808', // Web3Forms access key
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `New Portfolio Message from ${formData.name}`,
+          from_name: 'Aishwarya Portfolio',
+          botcheck: '',
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus({
+          type: 'success',
+          message: "Thank you! Your message has been sent successfully. I'll get back to you soon.",
+        });
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus({
+          type: 'error',
+          message: data.message || 'Something went wrong. Please try again.',
+        });
+      }
+    } catch {
+      setStatus({
+        type: 'error',
+        message: 'Unable to send right now. Please email directly at improaish@gmail.com.',
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -148,26 +197,24 @@ export default function Contact({ onCopyEmail, emailCopied }) {
                 </h3>
               </div>
 
-              {submitted && (
+              {/* Success Notification */}
+              {status.type === 'success' && (
                 <div className="mb-4 p-3.5 rounded-lg bg-emerald-950/90 border border-emerald-500/40 text-emerald-200 text-xs sm:text-sm flex items-start gap-2.5 animate-fadeIn">
                   <Check className="w-4 h-4 shrink-0 text-emerald-400 mt-0.5" />
-                  <span>Thank you! Your message has been sent successfully. I will get back to you soon.</span>
+                  <span>{status.message}</span>
                 </div>
               )}
 
-              {/* Hidden target frame prevents page navigation and eliminates connection timeout errors */}
-              <iframe
-                name="form_submit_target"
-                id="form_submit_target"
-                title="form_target"
-                style={{ display: 'none' }}
-              />
+              {/* Error Notification */}
+              {status.type === 'error' && (
+                <div className="mb-4 p-3.5 rounded-lg bg-rose-950/90 border border-rose-500/40 text-rose-200 text-xs sm:text-sm flex items-start gap-2.5 animate-fadeIn">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-rose-400 mt-0.5" />
+                  <span>{status.message}</span>
+                </div>
+              )}
 
-              {/* FormSubmit Direct Action Endpoint */}
+              {/* FormSubmit AJAX Form */}
               <form
-                action="https://formsubmit.io/send/improaish@gmail.com"
-                method="POST"
-                target="form_submit_target"
                 onSubmit={handleSubmit}
                 className="space-y-4"
               >
@@ -180,6 +227,8 @@ export default function Contact({ onCopyEmail, emailCopied }) {
                     name="name"
                     type="text"
                     required
+                    value={formData.name}
+                    onChange={handleChange}
                     placeholder="Enter your name"
                     className="w-full px-3.5 py-2.5 sm:py-3 rounded-lg bg-slate-950 border border-slate-800 text-white text-base sm:text-sm focus:border-cyanAccent-400 focus:outline-none focus:ring-1 focus:ring-cyanAccent-400 transition-colors min-h-[44px]"
                   />
@@ -194,6 +243,8 @@ export default function Contact({ onCopyEmail, emailCopied }) {
                     name="email"
                     type="email"
                     required
+                    value={formData.email}
+                    onChange={handleChange}
                     placeholder="you@company.com"
                     className="w-full px-3.5 py-2.5 sm:py-3 rounded-lg bg-slate-950 border border-slate-800 text-white text-base sm:text-sm focus:border-cyanAccent-400 focus:outline-none focus:ring-1 focus:ring-cyanAccent-400 transition-colors min-h-[44px]"
                   />
@@ -208,6 +259,8 @@ export default function Contact({ onCopyEmail, emailCopied }) {
                     name="message"
                     rows={4}
                     required
+                    value={formData.message}
+                    onChange={handleChange}
                     placeholder="Write your message here..."
                     className="w-full px-3.5 py-2.5 sm:py-3 rounded-lg bg-slate-950 border border-slate-800 text-white text-base sm:text-sm focus:border-cyanAccent-400 focus:outline-none focus:ring-1 focus:ring-cyanAccent-400 transition-colors resize-none"
                   />
@@ -216,10 +269,20 @@ export default function Contact({ onCopyEmail, emailCopied }) {
                 <div className="pt-1">
                   <button
                     type="submit"
-                    className="w-full py-3 px-4 rounded-lg bg-electric-600 hover:bg-electric-500 text-white font-semibold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-md shadow-electric-600/20 min-h-[44px] cursor-pointer"
+                    disabled={loading}
+                    className="w-full py-3 px-4 rounded-lg bg-electric-600 hover:bg-electric-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-md shadow-electric-600/20 min-h-[44px] cursor-pointer"
                   >
-                    <Send className="w-4 h-4" />
-                    <span>Send Message</span>
+                    {loading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Sending message...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        <span>Send Message</span>
+                      </>
+                    )}
                   </button>
                 </div>
               </form>

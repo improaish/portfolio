@@ -7,6 +7,7 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import ContentArchitecture from './components/ContentArchitecture';
 import Education from './components/Education';
+import Activities from './components/Activities';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Toast from './components/Toast';
@@ -28,6 +29,7 @@ export default function App() {
       'projects',
       'content-architecture',
       'education',
+      'activities',
       'contact'
     ];
 
@@ -96,6 +98,7 @@ export default function App() {
         <Projects />
         <ContentArchitecture />
         <Education />
+        <Activities />
         <Contact onCopyEmail={handleCopyEmail} emailCopied={emailCopied} />
       </main>
 
