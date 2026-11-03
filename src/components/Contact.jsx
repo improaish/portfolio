@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Mail, MapPin, Send, Copy, Check, ArrowUpRight } from 'lucide-react';
 import { Linkedin, Github, TwitterX, Instagram } from './BrandIcons';
 import { contactData, personalData } from '../data/portfolioData';
 
 export default function Contact({ onCopyEmail, emailCopied }) {
   const { socials } = personalData;
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = () => {
+    setSubmitted(true);
+  };
 
   return (
     <section id="contact" className="py-14 sm:py-16 lg:py-20 border-t border-slate-900">
@@ -133,7 +138,7 @@ export default function Contact({ onCopyEmail, emailCopied }) {
 
           </div>
 
-          {/* Right Column: Native FormSubmit Form */}
+          {/* Right Column: Working Contact Form */}
           <div className="lg:col-span-7 w-full">
             <div className="p-5 sm:p-7 rounded-xl bg-slate-900/60 border border-slate-800">
               
@@ -143,17 +148,29 @@ export default function Contact({ onCopyEmail, emailCopied }) {
                 </h3>
               </div>
 
-              {/* Official FormSubmit Endpoint with Activation & Email Permission Flow */}
+              {submitted && (
+                <div className="mb-4 p-3.5 rounded-lg bg-emerald-950/90 border border-emerald-500/40 text-emerald-200 text-xs sm:text-sm flex items-start gap-2.5 animate-fadeIn">
+                  <Check className="w-4 h-4 shrink-0 text-emerald-400 mt-0.5" />
+                  <span>Thank you! Your message has been sent successfully. I will get back to you soon.</span>
+                </div>
+              )}
+
+              {/* Hidden target frame prevents page navigation and eliminates connection timeout errors */}
+              <iframe
+                name="form_submit_target"
+                id="form_submit_target"
+                title="form_target"
+                style={{ display: 'none' }}
+              />
+
+              {/* FormSubmit Direct Action Endpoint */}
               <form
-                action="https://formsubmit.co/improaish@gmail.com"
+                action="https://formsubmit.io/send/improaish@gmail.com"
                 method="POST"
+                target="form_submit_target"
+                onSubmit={handleSubmit}
                 className="space-y-4"
               >
-                {/* FormSubmit Configuration */}
-                <input type="hidden" name="_template" value="table" />
-                <input type="hidden" name="_subject" value="New Portfolio Message from Contact Form" />
-                <input type="hidden" name="_next" value="https://aishwaryakumari.netlify.app/#contact" />
-
                 <div>
                   <label htmlFor="contact-name" className="block text-xs sm:text-sm text-slate-300 font-medium mb-1.5">
                     Your Name
