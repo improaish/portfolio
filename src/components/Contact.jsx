@@ -19,33 +19,26 @@ export default function Contact({ onCopyEmail, emailCopied }) {
     setIsSubmitting(true);
     setStatus(null);
 
-    const formPayload = new FormData();
-    formPayload.append('name', formData.name);
-    formPayload.append('email', formData.email);
-    formPayload.append('message', formData.message);
-    formPayload.append('_subject', `New Portfolio Message from ${formData.name}`);
-
     try {
-      // 1. Submit to FormSubmit.io active API
-      const fsPromise = fetch('https://formsubmit.io/send/improaish@gmail.com', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: formPayload
+      // Direct message delivery to improaish@gmail.com using FormSubmit free feature
+      const payload = new URLSearchParams({
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        _subject: `New Portfolio Message from ${formData.name}`,
+        _replyto: formData.email,
+        _next: 'https://aishwaryakumari.netlify.app/#contact'
       });
 
-      // 2. Also dispatch to Netlify form if running on Netlify
-      const netlifyPromise = fetch('/', {
+      const response = await fetch('https://formsubmit.io/send/improaish@gmail.com', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          'form-name': 'contact',
-          name: formData.name,
-          email: formData.email,
-          message: formData.message
-        }).toString()
-      }).catch(() => null);
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: payload.toString()
+      });
 
-      const [response] = await Promise.all([fsPromise, netlifyPromise]);
       const data = await response.json().catch(() => ({}));
 
       if (response.ok || data.received === true || data.success) {
@@ -56,12 +49,11 @@ export default function Contact({ onCopyEmail, emailCopied }) {
         throw new Error(data.message || 'Submission error');
       }
     } catch (err) {
-      console.warn('Form notice, launching direct client:', err);
+      console.warn('Direct submission notice, launching composer fallback:', err);
       // Fallback: Open web Gmail / default email client
       const subject = encodeURIComponent(`Message from ${formData.name || 'Visitor'} via Portfolio`);
       const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
       
-      // Try opening Gmail web composer first, falls back to mailto
       const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${contactData.email}&su=${subject}&body=${body}`;
       window.open(gmailUrl, '_blank') || (window.location.href = `mailto:${contactData.email}?subject=${subject}&body=${body}`);
       
@@ -253,7 +245,9 @@ export default function Contact({ onCopyEmail, emailCopied }) {
                 onSubmit={handleSubmit}
                 className="space-y-4"
               >
-                {/* Netlify form detection field */}
+                {/* FormSubmit Configuration */}
+                <input type="hidden" name="_next" value="https://aishwaryakumari.netlify.app/#contact" />
+                <input type="hidden" name="_subject" value="New Portfolio Message from Contact Form" />
                 <input type="hidden" name="form-name" value="contact" />
 
                 <div>
