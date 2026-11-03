@@ -156,7 +156,7 @@ export const projectsData = [
   {
     id: "digital-learning-content-hub",
     title: "Digital Learning Content Hub",
-    status: "Featured Project",
+    status: "Coming Soon",
     category: "EdTech & Content Architecture",
     description:
       "A structured educational repository demonstrating intuitive information architecture, taxonomic hierarchy, and accessible digital learning pathways.",

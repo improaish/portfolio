@@ -39,8 +39,9 @@ export default function Projects() {
               <span className="text-xs font-semibold text-cyanAccent-400">
                 {project.category}
               </span>
-              <span className="text-[11px] font-mono px-2.5 py-0.5 rounded bg-slate-800 text-slate-300">
-                {project.status}
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-mono px-2.5 py-0.5 rounded bg-slate-800/90 text-cyanAccent-300 border border-slate-700/80">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyanAccent-400 animate-pulse" />
+                <span>{project.status}</span>
               </span>
             </div>
 
