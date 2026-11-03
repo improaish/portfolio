@@ -55,7 +55,7 @@ export default function Contact({ onCopyEmail, emailCopied }) {
 
       if (fsResponse.ok || result.success === 'true' || result.success === true) {
         setStatus('success');
-        setStatusMessage('Your message has been sent directly to improaish@gmail.com! Aishwarya will reply soon.');
+        setStatusMessage('Your message has been sent successfully! I will get back to you soon.');
         setFormData({ name: '', email: '', message: '' });
       } else {
         throw new Error(result.message || 'Submission failed');
@@ -65,10 +65,10 @@ export default function Contact({ onCopyEmail, emailCopied }) {
       // Seamless mailto fallback
       const mailtoSubject = encodeURIComponent(`Message from ${formData.name || 'Visitor'} via Portfolio`);
       const mailtoBody = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
-      window.location.href = `mailto:improaish@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+      window.location.href = `mailto:${contactData.email}?subject=${mailtoSubject}&body=${mailtoBody}`;
       
       setStatus('success');
-      setStatusMessage('Opening your email client to send your message to improaish@gmail.com.');
+      setStatusMessage('Opening your email client to send your message.');
     } finally {
       setIsSubmitting(false);
     }
@@ -209,9 +209,6 @@ export default function Contact({ onCopyEmail, emailCopied }) {
                 <h3 className="text-base sm:text-lg font-bold text-white">
                   Send a Message
                 </h3>
-                <span className="text-[11px] text-cyanAccent-400 font-mono">
-                  &bull; Delivered to improaish@gmail.com
-                </span>
               </div>
 
               {status === 'success' && (
@@ -295,7 +292,7 @@ export default function Contact({ onCopyEmail, emailCopied }) {
                     {isSubmitting ? (
                       <>
                         <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Sending to improaish@gmail.com...</span>
+                        <span>Sending message...</span>
                       </>
                     ) : (
                       <>
