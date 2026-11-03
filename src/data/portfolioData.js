@@ -7,7 +7,7 @@
 export const personalData = {
   name: "Aishwarya Kumari",
   username: "improaish",
-  headline: "Artificial Intelligence | EdTech | Emerging Technologies",
+  headline: "Content Architect & AI Enthusiast",
   specializations: [
     "AI Applications",
     "EdTech",
