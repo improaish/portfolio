@@ -34,6 +34,14 @@
   </head>
   <body class="bg-navy-950 text-slate-100 font-sans antialiased selection:bg-electric-600 selection:text-white">
     <div id="root"></div>
+    
+    <!-- Netlify Forms Static Discovery -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+    </form>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
