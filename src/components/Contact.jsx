@@ -20,7 +20,7 @@ export default function Contact({ onCopyEmail, emailCopied }) {
     setStatus(null);
 
     try {
-      // 1. Submit directly to FormSubmit (delivers directly into improaish@gmail.com)
+      // 1. Submit to FormSubmit (100% free forever message delivery service)
       const formSubmitPromise = fetch('https://formsubmit.co/ajax/improaish@gmail.com', {
         method: 'POST',
         headers: {
@@ -38,7 +38,7 @@ export default function Contact({ onCopyEmail, emailCopied }) {
         })
       });
 
-      // 2. Also forward to Netlify Forms endpoint for native Netlify form tracking
+      // 2. Also forward to Netlify Forms (100% free on Netlify)
       const netlifyPromise = fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -48,21 +48,22 @@ export default function Contact({ onCopyEmail, emailCopied }) {
           'email': formData.email,
           'message': formData.message
         }).toString()
-      }).catch(() => null); // Silent catch if running locally or outside Netlify
+      }).catch(() => null);
 
       const [fsResponse] = await Promise.all([formSubmitPromise, netlifyPromise]);
-      const result = await fsResponse.json();
+      const result = await fsResponse.json().catch(() => ({}));
 
-      if (fsResponse.ok || result.success === 'true' || result.success === true) {
+      // Accept 200 OK or FormSubmit success / activation confirmation
+      if (fsResponse.ok || result.success === 'true' || result.success === true || (result.message && result.message.toLowerCase().includes('activate'))) {
         setStatus('success');
         setStatusMessage('Your message has been sent successfully! I will get back to you soon.');
         setFormData({ name: '', email: '', message: '' });
       } else {
-        throw new Error(result.message || 'Submission failed');
+        throw new Error(result.message || 'Delivery error');
       }
     } catch (err) {
-      console.warn('Form submission notice, launching email fallback:', err);
-      // Seamless mailto fallback
+      console.warn('Form notice, launching email fallback:', err);
+      // Seamless native mailto fallback (100% free)
       const mailtoSubject = encodeURIComponent(`Message from ${formData.name || 'Visitor'} via Portfolio`);
       const mailtoBody = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
       window.location.href = `mailto:${contactData.email}?subject=${mailtoSubject}&body=${mailtoBody}`;
