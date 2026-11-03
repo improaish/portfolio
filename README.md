@@ -87,3 +87,4 @@ The website will automatically display the new project with live links without a
 - **Colors**: Deep Navy Blue (`#040814`, `#070f26`), Charcoal Black (`#111827`), Electric Blue (`#2563eb`), Subtle Cyan (`#06b6d4`, `#38bdf8`), Slate White (`#f8fafc`).
 - **Typography**: Inter & Plus Jakarta Sans.
 - **Tone**: Recruiter-focused, authoritative yet approachable, grounded early-career professional credibility.
+
