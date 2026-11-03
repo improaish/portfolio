@@ -154,30 +154,19 @@ export const experienceData = [
 
 export const projectsData = [
   {
-    id: "project-1",
-    title: "AI-Powered EdTech Assistant",
-    status: "Coming Soon",
-    category: "EdTech & AI",
-    description: "Intelligent learning tool providing adaptive feedback and structured explanations for students.",
-    technologies: ["React", "Python", "AI Applications", "EdTech"],
-    githubUrl: "https://github.com/improaish"
-  },
-  {
-    id: "project-2",
+    id: "digital-learning-content-hub",
     title: "Digital Learning Content Hub",
-    status: "Coming Soon",
+    status: "Featured Project",
     category: "EdTech & Content Architecture",
-    description: "Structured educational repository demonstrating information architecture and seamless learning pathways.",
-    technologies: ["Content Architecture", "Web Development", "UI/UX"],
-    githubUrl: "https://github.com/improaish"
-  },
-  {
-    id: "project-3",
-    title: "Modern Web Application",
-    status: "Coming Soon",
-    category: "Web Development",
-    description: "Responsive, component-driven frontend application with focus on performance and accessibility.",
-    technologies: ["React.js", "JavaScript", "Tailwind CSS"],
+    description:
+      "A structured educational repository demonstrating intuitive information architecture, taxonomic hierarchy, and accessible digital learning pathways.",
+    technologies: [
+      "Content Architecture",
+      "EdTech",
+      "Information Design",
+      "Web Development",
+      "UI/UX"
+    ],
     githubUrl: "https://github.com/improaish"
   }
 ];
