@@ -16,12 +16,13 @@ export default function Contact({ onCopyEmail, emailCopied }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formElement = e.target;
     setIsSubmitting(true);
     setStatus(null);
 
     try {
-      // 1. Submit to FormSubmit (100% free forever message delivery service)
-      const formSubmitPromise = fetch('https://formsubmit.co/ajax/improaish@gmail.com', {
+      // Direct submission via FormSubmit AJAX service (formsubmit.co)
+      const response = await fetch('https://formsubmit.co/ajax/improaish@gmail.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,23 +39,9 @@ export default function Contact({ onCopyEmail, emailCopied }) {
         })
       });
 
-      // 2. Also forward to Netlify Forms (100% free on Netlify)
-      const netlifyPromise = fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          'form-name': 'contact',
-          'name': formData.name,
-          'email': formData.email,
-          'message': formData.message
-        }).toString()
-      }).catch(() => null);
+      const result = await response.json().catch(() => ({}));
 
-      const [fsResponse] = await Promise.all([formSubmitPromise, netlifyPromise]);
-      const result = await fsResponse.json().catch(() => ({}));
-
-      // Accept 200 OK or FormSubmit success / activation confirmation
-      if (fsResponse.ok || result.success === 'true' || result.success === true || (result.message && result.message.toLowerCase().includes('activate'))) {
+      if (response.ok || result.success === 'true' || result.success === true || (result.message && result.message.toLowerCase().includes('activate'))) {
         setStatus('success');
         setStatusMessage('Your message has been sent successfully! I will get back to you soon.');
         setFormData({ name: '', email: '', message: '' });
@@ -62,14 +49,17 @@ export default function Contact({ onCopyEmail, emailCopied }) {
         throw new Error(result.message || 'Delivery error');
       }
     } catch (err) {
-      console.warn('Form notice, launching email fallback:', err);
-      // Seamless native mailto fallback (100% free)
-      const mailtoSubject = encodeURIComponent(`Message from ${formData.name || 'Visitor'} via Portfolio`);
-      const mailtoBody = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
-      window.location.href = `mailto:${contactData.email}?subject=${mailtoSubject}&body=${mailtoBody}`;
-      
-      setStatus('success');
-      setStatusMessage('Opening your email client to send your message.');
+      console.warn('FormSubmit AJAX notice, executing standard form submit fallback:', err);
+      // Fallback: Submit natively through FormSubmit
+      if (formElement && formElement.submit) {
+        formElement.submit();
+      } else {
+        const mailtoSubject = encodeURIComponent(`Message from ${formData.name || 'Visitor'} via Portfolio`);
+        const mailtoBody = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+        window.location.href = `mailto:${contactData.email}?subject=${mailtoSubject}&body=${mailtoBody}`;
+        setStatus('success');
+        setStatusMessage('Opening your email client to send your message.');
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -227,14 +217,15 @@ export default function Contact({ onCopyEmail, emailCopied }) {
               )}
 
               <form
-                name="contact"
+                action="https://formsubmit.co/improaish@gmail.com"
                 method="POST"
-                data-netlify="true"
                 onSubmit={handleSubmit}
                 className="space-y-4"
               >
-                {/* Netlify bot detection field */}
-                <input type="hidden" name="form-name" value="contact" />
+                {/* FormSubmit Configuration */}
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_subject" value="New Portfolio Message from Contact Form" />
 
                 <div>
                   <label htmlFor="contact-name" className="block text-xs sm:text-sm text-slate-300 font-medium mb-1.5">
