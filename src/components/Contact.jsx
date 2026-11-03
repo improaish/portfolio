@@ -1,56 +1,10 @@
-import React, { useState } from 'react';
-import { Mail, MapPin, Send, Copy, Check, ArrowUpRight, Loader2, AlertCircle } from 'lucide-react';
+import React from 'react';
+import { Mail, MapPin, Send, Copy, Check, ArrowUpRight } from 'lucide-react';
 import { Linkedin, Github, TwitterX, Instagram } from './BrandIcons';
 import { contactData, personalData } from '../data/portfolioData';
 
 export default function Contact({ onCopyEmail, emailCopied }) {
   const { socials } = personalData;
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [status, setStatus] = useState(null); // 'success' | 'error' | null
-  const [statusMessage, setStatusMessage] = useState('');
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setStatus(null);
-
-    const payload = new URLSearchParams({
-      name: formData.name,
-      email: formData.email,
-      message: formData.message,
-      _subject: `New Portfolio Message from ${formData.name}`,
-      _replyto: formData.email,
-      _next: 'https://aishwaryakumari.netlify.app/#contact'
-    });
-
-    try {
-      // Direct message delivery using FormSubmit free feature
-      // mode: 'no-cors' allows safe background form dispatch without browser CORS errors or redirects
-      await fetch('https://formsubmit.io/send/improaish@gmail.com', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: payload.toString()
-      });
-
-      setStatus('success');
-      setStatusMessage('Thank you! Your message has been sent successfully. I will get back to you soon.');
-      setFormData({ name: '', email: '', message: '' });
-    } catch (err) {
-      console.warn('Form submission notice:', err);
-      setStatus('error');
-      setStatusMessage('Unable to send message. Please check your connection and try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <section id="contact" className="py-14 sm:py-16 lg:py-20 border-t border-slate-900">
@@ -179,7 +133,7 @@ export default function Contact({ onCopyEmail, emailCopied }) {
 
           </div>
 
-          {/* Right Column: Working Contact Form */}
+          {/* Right Column: Native FormSubmit Form */}
           <div className="lg:col-span-7 w-full">
             <div className="p-5 sm:p-7 rounded-xl bg-slate-900/60 border border-slate-800">
               
@@ -189,30 +143,16 @@ export default function Contact({ onCopyEmail, emailCopied }) {
                 </h3>
               </div>
 
-              {status === 'success' && (
-                <div className="mb-4 p-3.5 rounded-lg bg-emerald-950/90 border border-emerald-500/40 text-emerald-200 text-xs sm:text-sm flex items-start gap-2.5 animate-fadeIn">
-                  <Check className="w-4 h-4 shrink-0 text-emerald-400 mt-0.5" />
-                  <span>{statusMessage}</span>
-                </div>
-              )}
-
-              {status === 'error' && (
-                <div className="mb-4 p-3.5 rounded-lg bg-rose-950/90 border border-rose-500/40 text-rose-200 text-xs sm:text-sm flex items-start gap-2.5 animate-fadeIn">
-                  <AlertCircle className="w-4 h-4 shrink-0 text-rose-400 mt-0.5" />
-                  <span>{statusMessage}</span>
-                </div>
-              )}
-
+              {/* Official FormSubmit Endpoint with Activation & Email Permission Flow */}
               <form
-                name="contact"
+                action="https://formsubmit.co/improaish@gmail.com"
                 method="POST"
-                action="https://formsubmit.io/send/improaish@gmail.com"
-                onSubmit={handleSubmit}
                 className="space-y-4"
               >
                 {/* FormSubmit Configuration */}
-                <input type="hidden" name="_next" value="https://aishwaryakumari.netlify.app/#contact" />
+                <input type="hidden" name="_template" value="table" />
                 <input type="hidden" name="_subject" value="New Portfolio Message from Contact Form" />
+                <input type="hidden" name="_next" value="https://aishwaryakumari.netlify.app/#contact" />
 
                 <div>
                   <label htmlFor="contact-name" className="block text-xs sm:text-sm text-slate-300 font-medium mb-1.5">
@@ -224,8 +164,6 @@ export default function Contact({ onCopyEmail, emailCopied }) {
                     type="text"
                     required
                     placeholder="Enter your name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-3.5 py-2.5 sm:py-3 rounded-lg bg-slate-950 border border-slate-800 text-white text-base sm:text-sm focus:border-cyanAccent-400 focus:outline-none focus:ring-1 focus:ring-cyanAccent-400 transition-colors min-h-[44px]"
                   />
                 </div>
@@ -240,8 +178,6 @@ export default function Contact({ onCopyEmail, emailCopied }) {
                     type="email"
                     required
                     placeholder="you@company.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-3.5 py-2.5 sm:py-3 rounded-lg bg-slate-950 border border-slate-800 text-white text-base sm:text-sm focus:border-cyanAccent-400 focus:outline-none focus:ring-1 focus:ring-cyanAccent-400 transition-colors min-h-[44px]"
                   />
                 </div>
@@ -256,8 +192,6 @@ export default function Contact({ onCopyEmail, emailCopied }) {
                     rows={4}
                     required
                     placeholder="Write your message here..."
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full px-3.5 py-2.5 sm:py-3 rounded-lg bg-slate-950 border border-slate-800 text-white text-base sm:text-sm focus:border-cyanAccent-400 focus:outline-none focus:ring-1 focus:ring-cyanAccent-400 transition-colors resize-none"
                   />
                 </div>
@@ -265,20 +199,10 @@ export default function Contact({ onCopyEmail, emailCopied }) {
                 <div className="pt-1">
                   <button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-3 px-4 rounded-lg bg-electric-600 hover:bg-electric-500 disabled:bg-electric-900 disabled:opacity-60 text-white font-semibold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-md shadow-electric-600/20 min-h-[44px] cursor-pointer"
+                    className="w-full py-3 px-4 rounded-lg bg-electric-600 hover:bg-electric-500 text-white font-semibold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-md shadow-electric-600/20 min-h-[44px] cursor-pointer"
                   >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Sending message...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4" />
-                        <span>Send Message</span>
-                      </>
-                    )}
+                    <Send className="w-4 h-4" />
+                    <span>Send Message</span>
                   </button>
                 </div>
               </form>
