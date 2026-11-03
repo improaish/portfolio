@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, Copy, Check, ArrowUpRight, Loader2, AlertCircle } from 'lucide-react';
+import { Mail, MapPin, Send, Copy, Check, ArrowUpRight, Loader2, AlertCircle, ExternalLink } from 'lucide-react';
 import { Linkedin, Github, TwitterX, Instagram } from './BrandIcons';
 import { contactData, personalData } from '../data/portfolioData';
 
@@ -19,39 +19,67 @@ export default function Contact({ onCopyEmail, emailCopied }) {
     setIsSubmitting(true);
     setStatus(null);
 
-    try {
-      // Native Netlify Forms submission (100% free, zero external server dependency)
-      const encodedData = new URLSearchParams({
-        'form-name': 'contact',
-        name: formData.name,
-        email: formData.email,
-        message: formData.message
-      }).toString();
+    const formPayload = new FormData();
+    formPayload.append('name', formData.name);
+    formPayload.append('email', formData.email);
+    formPayload.append('message', formData.message);
+    formPayload.append('_subject', `New Portfolio Message from ${formData.name}`);
 
-      const response = await fetch('/', {
+    try {
+      // 1. Submit to FormSubmit.io active API
+      const fsPromise = fetch('https://formsubmit.io/send/improaish@gmail.com', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encodedData
+        headers: { 'Accept': 'application/json' },
+        body: formPayload
       });
 
-      if (response.ok) {
+      // 2. Also dispatch to Netlify form if running on Netlify
+      const netlifyPromise = fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          'form-name': 'contact',
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        }).toString()
+      }).catch(() => null);
+
+      const [response] = await Promise.all([fsPromise, netlifyPromise]);
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok || data.received === true || data.success) {
         setStatus('success');
         setStatusMessage('Your message has been sent successfully! I will get back to you soon.');
         setFormData({ name: '', email: '', message: '' });
       } else {
-        throw new Error('Fallback to direct client');
+        throw new Error(data.message || 'Submission error');
       }
     } catch (err) {
-      // Direct, foolproof mailto fallback (works offline and locally without third-party server errors)
-      const mailtoSubject = encodeURIComponent(`Message from ${formData.name || 'Visitor'} via Portfolio`);
-      const mailtoBody = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
-      window.location.href = `mailto:${contactData.email}?subject=${mailtoSubject}&body=${mailtoBody}`;
+      console.warn('Form notice, launching direct client:', err);
+      // Fallback: Open web Gmail / default email client
+      const subject = encodeURIComponent(`Message from ${formData.name || 'Visitor'} via Portfolio`);
+      const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+      
+      // Try opening Gmail web composer first, falls back to mailto
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${contactData.email}&su=${subject}&body=${body}`;
+      window.open(gmailUrl, '_blank') || (window.location.href = `mailto:${contactData.email}?subject=${subject}&body=${body}`);
       
       setStatus('success');
-      setStatusMessage('Opening your email client to send your message directly.');
+      setStatusMessage('Your email composer has been opened to send your message.');
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleOpenGmail = () => {
+    const subject = encodeURIComponent(`Inquiry from ${formData.name || 'Visitor'} via Portfolio`);
+    const body = encodeURIComponent(
+      formData.message
+        ? `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+        : `Hello Aishwarya,\n\nI would like to connect with you regarding an opportunity.`
+    );
+    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${contactData.email}&su=${subject}&body=${body}`, '_blank');
   };
 
   return (
@@ -74,7 +102,7 @@ export default function Contact({ onCopyEmail, emailCopied }) {
           {/* Left Column: Direct Links & Socials (@improaish) */}
           <div className="lg:col-span-5 space-y-4 w-full">
             
-            {/* Email Card */}
+            {/* Direct Email Card */}
             <div className="p-4 sm:p-5 rounded-xl bg-slate-900/60 border border-slate-800 flex items-center justify-between gap-3">
               <div className="min-w-0">
                 <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-slate-400 font-medium">
@@ -90,7 +118,7 @@ export default function Contact({ onCopyEmail, emailCopied }) {
               <button
                 type="button"
                 onClick={onCopyEmail}
-                className="p-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center"
+                className="p-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer"
                 title="Copy Email"
                 aria-label="Copy email address"
               >
@@ -173,15 +201,28 @@ export default function Contact({ onCopyEmail, emailCopied }) {
               </a>
             </div>
 
+            {/* Quick Gmail Web Launcher */}
+            <div className="p-4 rounded-xl bg-slate-900/40 border border-slate-800/60 flex items-center justify-between gap-3 text-xs">
+              <span className="text-slate-400">Prefer Gmail directly?</span>
+              <button
+                type="button"
+                onClick={handleOpenGmail}
+                className="inline-flex items-center gap-1 text-cyanAccent-400 hover:underline font-medium cursor-pointer"
+              >
+                <span>Compose in Gmail</span>
+                <ExternalLink className="w-3 h-3" />
+              </button>
+            </div>
+
             {/* Location */}
             <div className="p-3.5 sm:p-4 rounded-xl bg-slate-900/40 border border-slate-800/60 flex items-center gap-2.5 text-xs text-slate-400">
-              <MapPin className="w-4 h-4 text-rose-400 shrink-0" />
+              <MapPin className="w-3.5 h-3.5 text-rose-400 shrink-0" />
               <span>Location: {contactData.location}</span>
             </div>
 
           </div>
 
-          {/* Right Column: Responsive Working Contact Form */}
+          {/* Right Column: Working Contact Form */}
           <div className="lg:col-span-7 w-full">
             <div className="p-5 sm:p-7 rounded-xl bg-slate-900/60 border border-slate-800">
               
@@ -208,7 +249,7 @@ export default function Contact({ onCopyEmail, emailCopied }) {
               <form
                 name="contact"
                 method="POST"
-                data-netlify="true"
+                action="https://formsubmit.io/send/improaish@gmail.com"
                 onSubmit={handleSubmit}
                 className="space-y-4"
               >
