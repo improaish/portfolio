@@ -1,6 +1,7 @@
 /**
- * Centralized Portfolio Data for Aishwarya Kumari
- * All social handles set to @improaish
+ * Portfolio Data for Aishwarya Kumari
+ * Simplified and focused
+ * Social handles: @improaish everywhere
  */
 
 export const personalData = {
@@ -9,18 +10,18 @@ export const personalData = {
   headline: "Artificial Intelligence | EdTech | Emerging Technologies",
   specializations: [
     "AI Applications",
-    "Educational Technology",
+    "EdTech",
     "Web Development",
     "Content Architecture"
   ],
   introduction:
-    "Exploring the intersection of Artificial Intelligence and Educational Technology, with an interest in AI-driven applications, digital learning solutions, emerging technologies and structured content architecture.",
+    "Exploring the intersection of AI Applications and EdTech, with an interest in digital learning solutions, web development, emerging technologies and structured content architecture.",
   heroBio:
-    "I am an Artificial Intelligence graduate with an interest in emerging technologies, educational innovation and practical digital solutions. My technical interests include Artificial Intelligence, Machine Learning, Web Development, Application Development and IoT. Alongside my technical background, I have experience in Content Architecture, research and structured information development.",
+    "Artificial Intelligence graduate focused on EdTech, AI applications, and practical digital solutions. Experienced in web development, application architecture, and content architecture.",
   location: "India",
   email: "improaish@gmail.com",
   profileImage: "/aishwarya_image.jpg",
-  availabilityBadge: "Open to Entry-Level Roles & Opportunities",
+  availabilityBadge: "Open to Entry-Level Roles",
   socials: {
     linkedin: "https://www.linkedin.com/in/improaish",
     github: "https://github.com/improaish",
@@ -34,11 +35,10 @@ export const personalData = {
 export const aboutData = {
   title: "About Me",
   paragraphs: [
-    "I have an academic background in Artificial Intelligence and Electronics Engineering, with a growing interest in emerging technologies and educational innovation.",
-    "My technical interests include Artificial Intelligence, Machine Learning, Web Development, Application Development, Internet of Things and technology-driven solutions.",
-    "Through internships and practical learning experiences, I have gained exposure to software development, AI assistance, ethical hacking, penetration testing, embedded systems and IoT.",
-    "Beyond technical domains, I work in Content Architecture, focusing on research, information structuring, content organisation and developing meaningful digital experiences.",
-    "I am interested in opportunities where technology, education and innovation intersect."
+    "I have an academic background in Artificial Intelligence and Electronics Engineering, with a strong focus on EdTech and emerging technologies.",
+    "My core interests include EdTech, AI Applications, Machine Learning, Web Development, Application Development, and modern technology-driven solutions.",
+    "Through practical internships, I have gained hands-on exposure to software development, AI assistance, and embedded systems.",
+    "Beyond development, I specialize in Content Architecture—focusing on structured information design, content strategy, and creating intuitive digital learning experiences."
   ],
   highlights: [
     {
@@ -47,109 +47,59 @@ export const aboutData = {
       detail: "Motihari College of Engineering ('27)"
     },
     {
-      label: "Industry Focus",
-      value: "Educational Technology (EdTech)",
-      detail: "AI-assisted & digital learning platforms"
+      label: "Primary Focus",
+      value: "EdTech & AI Applications",
+      detail: "Smart digital learning platforms"
     },
     {
-      label: "Experience",
-      value: "6 Practical Internships",
-      detail: "NIELIT, C-DAC, Minus Robotics & more"
-    },
-    {
-      label: "Core Advantage",
+      label: "Capability",
       value: "Content Architecture",
       detail: "Structured information & digital strategy"
     }
   ]
 };
 
-export const technicalExpertiseData = [
+/**
+ * Areas of Interest (AI, IoT, and Cybersecurity removed per request; Educational Technology updated to EdTech)
+ */
+export const interestsData = [
   {
-    id: "ai",
-    title: "Artificial Intelligence",
-    description: "Exploring AI concepts, applications and their use in solving practical problems.",
-    icon: "Brain"
-  },
-  {
-    id: "ml",
-    title: "Machine Learning",
-    description: "Understanding machine learning concepts, models and applications.",
-    icon: "Cpu"
+    id: "edtech",
+    title: "EdTech",
+    description: "Technology-enabled learning, digital education platforms, and intelligent learning solutions.",
+    icon: "GraduationCap"
   },
   {
     id: "ai-apps",
     title: "AI Applications",
-    description: "Exploring AI-powered applications, tools and implementation possibilities.",
+    description: "Applied AI-powered tools, intelligent assistants, and practical implementation.",
     icon: "Sparkles"
   },
   {
-    id: "edtech",
-    title: "Educational Technology",
-    description: "Interested in technology-enabled learning, digital education platforms and AI-driven educational solutions.",
-    icon: "GraduationCap"
+    id: "ml",
+    title: "Machine Learning",
+    description: "Foundational ML concepts, models, pattern recognition, and data-driven solutions.",
+    icon: "Cpu"
   },
   {
     id: "web-dev",
     title: "Web Development",
-    description: "Understanding web technologies, website structures and frontend development.",
+    description: "Modern frontend technologies, responsive web design, and structured web interfaces.",
     icon: "Globe"
   },
   {
     id: "app-dev",
     title: "Application Development",
-    description: "Exploring application functionality, architecture and development processes.",
+    description: "Software architecture, modular application design, and modern development workflows.",
     icon: "Layers"
-  },
-  {
-    id: "iot",
-    title: "Internet of Things",
-    description: "Exposure to connected devices, embedded systems and IoT applications.",
-    icon: "Radio"
-  },
-  {
-    id: "cybersecurity",
-    title: "Cybersecurity",
-    description: "Practical exposure to ethical hacking, penetration testing and information security.",
-    icon: "ShieldCheck"
   },
   {
     id: "emerging-tech",
     title: "Emerging Technologies",
-    description: "Exploring technological innovations and their real-world applications.",
+    description: "Exploring next-generation technologies and their practical real-world applications.",
     icon: "Compass"
   }
 ];
-
-export const edTechData = {
-  title: "Technology Meets Education",
-  badge: "Primary Industry Direction",
-  description:
-    "I am particularly interested in Educational Technology and the role of Artificial Intelligence in transforming digital learning experiences. I enjoy exploring how emerging technologies, AI-powered applications and structured digital content can contribute to accessible and effective learning environments.",
-  cards: [
-    {
-      id: "ai-in-education",
-      title: "AI in Education",
-      description:
-        "Exploring AI applications in learning, educational assistance and personalised learning experiences.",
-      icon: "Bot"
-    },
-    {
-      id: "digital-learning",
-      title: "Digital Learning Solutions",
-      description:
-        "Understanding digital learning platforms, educational applications and technology-enabled education.",
-      icon: "MonitorPlay"
-    },
-    {
-      id: "content-arch-ed",
-      title: "Educational Content Architecture",
-      description:
-        "Organising educational information into structured, accessible and meaningful digital content.",
-      icon: "FolderTree"
-    }
-  ]
-};
 
 export const experienceData = [
   {
@@ -205,124 +155,61 @@ export const experienceData = [
 export const projectsData = [
   {
     id: "project-1",
-    title: "AI-Powered Educational Assistant",
-    status: "Project Coming Soon",
-    category: "AI & EdTech",
-    description:
-      "Intelligent learning assistant integrating educational support workflows and structured knowledge retrieval.",
-    technologies: ["Artificial Intelligence", "Python", "React", "EdTech"],
-    githubUrl: "https://github.com/improaish",
-    liveDemoUrl: "#"
+    title: "AI-Powered EdTech Assistant",
+    status: "Coming Soon",
+    category: "EdTech & AI",
+    description: "Intelligent learning tool providing adaptive feedback and structured explanations for students.",
+    technologies: ["React", "Python", "AI Applications", "EdTech"],
+    githubUrl: "https://github.com/improaish"
   },
   {
     id: "project-2",
     title: "Digital Learning Content Hub",
-    status: "Project Coming Soon",
+    status: "Coming Soon",
     category: "EdTech & Content Architecture",
-    description:
-      "Structured educational resource repository showcasing content taxonomy and accessible learning pathways.",
-    technologies: ["Content Architecture", "Web Development", "UI/UX", "SEO"],
-    githubUrl: "https://github.com/improaish",
-    liveDemoUrl: "#"
+    description: "Structured educational repository demonstrating information architecture and seamless learning pathways.",
+    technologies: ["Content Architecture", "Web Development", "UI/UX"],
+    githubUrl: "https://github.com/improaish"
   },
   {
     id: "project-3",
-    title: "IoT Sensor Monitoring System",
-    status: "Project Coming Soon",
-    category: "IoT & Emerging Tech",
-    description:
-      "Connected device telemetry and sensor monitoring interface, drawing from practical embedded systems exposure.",
-    technologies: ["Internet of Things", "Embedded Systems", "Web Interface"],
-    githubUrl: "https://github.com/improaish",
-    liveDemoUrl: "#"
-  },
-  {
-    id: "project-4",
-    title: "Web Application Framework",
-    status: "Add Project",
+    title: "Modern Web Application",
+    status: "Coming Soon",
     category: "Web Development",
-    description:
-      "Modular frontend application focused on accessible interface design and responsive layout patterns.",
+    description: "Responsive, component-driven frontend application with focus on performance and accessibility.",
     technologies: ["React.js", "JavaScript", "Tailwind CSS"],
-    githubUrl: "https://github.com/improaish",
-    liveDemoUrl: "#"
-  },
-  {
-    id: "project-5",
-    title: "Machine Learning Concept Explorer",
-    status: "Add Project",
-    category: "Machine Learning",
-    description:
-      "Practical implementation exploring classification models, regression, and data processing fundamentals.",
-    technologies: ["Machine Learning", "Python", "Data Processing"],
-    githubUrl: "https://github.com/improaish",
-    liveDemoUrl: "#"
-  },
-  {
-    id: "project-6",
-    title: "Security & Penetration Testing Toolkit",
-    status: "Add Project",
-    category: "Cybersecurity",
-    description:
-      "Security audit checklists, vulnerability assessment notes, and practical penetration testing methodologies.",
-    technologies: ["Ethical Hacking", "Security Analysis", "Information Defense"],
-    githubUrl: "https://github.com/improaish",
-    liveDemoUrl: "#"
+    githubUrl: "https://github.com/improaish"
   }
 ];
 
 export const contentArchitectureData = {
-  title: "Content Architecture & Digital Content",
+  title: "Content Architecture",
   description:
-    "Alongside my technical interests, I work in Content Architecture, focusing on research, information organisation, structured content development and creating meaningful digital experiences. My approach combines information clarity, audience understanding and strategic content organisation.",
+    "Structuring digital content for clarity, discoverability, and engaging user experiences.",
   cards: [
-    {
-      id: "ca-core",
-      title: "Content Architecture",
-      description: "Designing structured digital content frameworks for scalability and clarity.",
-      icon: "Boxes"
-    },
     {
       id: "info-arch",
       title: "Information Architecture",
-      description: "Structuring user-centric taxonomies and hierarchies for intuitive navigation.",
+      description: "Organizing taxonomies, navigation flows, and intuitive hierarchies.",
       icon: "Network"
     },
     {
       id: "content-strategy",
       title: "Content Strategy",
-      description: "Aligning content delivery with audience intent and organizational goals.",
+      description: "Planning and structuring digital content to meet user and organizational goals.",
       icon: "Target"
     },
     {
       id: "seo-fundamentals",
-      title: "SEO Fundamentals",
-      description: "Applying discoverability principles, semantic structure, and web standards.",
+      title: "SEO & Discoverability",
+      description: "Applying semantic structure, keyword intent, and search standards.",
       icon: "SearchCheck"
     },
     {
-      id: "keyword-research",
-      title: "Keyword Research",
-      description: "Query intent mapping and topical organization to guide structured creation.",
-      icon: "KeyRound"
-    },
-    {
-      id: "website-structure",
-      title: "Website Content Structure",
-      description: "Organizing logical page hierarchies and engaging content flows.",
-      icon: "LayoutTemplate"
-    },
-    {
-      id: "educational-content",
-      title: "Educational Content Development",
-      description: "Transforming technical subjects into accessible, structured learning units.",
+      id: "ed-content",
+      title: "EdTech Content Development",
+      description: "Breaking complex technical topics into clear, structured learning modules.",
       icon: "BookOpenCheck"
-    },
-    {
-      id: "research-structuring",
-      title: "Research & Information Structuring",
-      description: "Synthesizing research findings into clear, structured digital resources.",
-      icon: "FileSpreadsheet"
     }
   ]
 };
@@ -331,44 +218,35 @@ export const educationData = [
   {
     id: "btech",
     institution: "Motihari College of Engineering",
-    degree: "Bachelor of Technology",
-    specialisation: "Artificial Intelligence",
+    degree: "B.Tech in Artificial Intelligence",
     year: "2027",
     status: "Pursuing"
   },
   {
     id: "polytechnic",
-    institution: "Government Polytechnic Motihari, East Champaran",
-    qualification: "Polytechnic",
-    specialisation: "Electronics Engineering",
+    institution: "Government Polytechnic Motihari",
+    degree: "Polytechnic Diploma in Electronics Engineering",
     year: "2024",
     status: "Completed"
   },
   {
     id: "matriculation",
     institution: "Chandrasheel School",
-    qualification: "Matriculation",
-    specialisation: "Secondary Education",
+    degree: "Matriculation (Secondary Education)",
     year: "Completed",
     status: "Completed"
   }
 ];
 
 export const languagesData = [
-  {
-    language: "Hindi",
-    proficiency: "Professional Working Proficiency"
-  },
-  {
-    language: "English",
-    proficiency: "Full Professional Proficiency"
-  }
+  { language: "English", proficiency: "Full Professional" },
+  { language: "Hindi", proficiency: "Professional Working" }
 ];
 
 export const contactData = {
   title: "Let's Connect",
   description:
-    "Open to professional opportunities, industry connections, collaborations and initiatives across Artificial Intelligence, Educational Technology and emerging technologies.",
+    "Open to opportunities, collaborations, and discussions in EdTech, AI Applications, and Web Development.",
   email: "improaish@gmail.com",
   username: "improaish",
   location: "India"

@@ -3,12 +3,10 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Expertise from './components/Expertise';
-import EdTechSection from './components/EdTechSection';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
 import ContentArchitecture from './components/ContentArchitecture';
 import Education from './components/Education';
-import Languages from './components/Languages';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Toast from './components/Toast';
@@ -25,8 +23,7 @@ export default function App() {
     const sectionIds = [
       'home',
       'about',
-      'expertise',
-      'edtech',
+      'interests',
       'experience',
       'projects',
       'content-architecture',
@@ -66,7 +63,7 @@ export default function App() {
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(personalData.email).then(() => {
       setEmailCopied(true);
-      setToastMessage(`Email address copied: ${personalData.email}`);
+      setToastMessage(`Copied to clipboard: ${personalData.email}`);
       setShowToast(true);
 
       setTimeout(() => {
@@ -84,23 +81,21 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-navy-950 text-slate-100 flex flex-col selection:bg-electric-600 selection:text-white">
-      {/* Navigation */}
+      {/* Sticky Navigation */}
       <Navbar
         activeSection={activeSection}
         onConnectClick={() => setActiveSection('contact')}
       />
 
-      {/* Main Content Sections */}
+      {/* Main Content */}
       <main className="flex-grow">
         <Hero onCopyEmail={handleCopyEmail} emailCopied={emailCopied} />
         <About />
         <Expertise />
-        <EdTechSection />
         <Experience />
         <Projects />
         <ContentArchitecture />
         <Education />
-        <Languages />
         <Contact onCopyEmail={handleCopyEmail} emailCopied={emailCopied} />
       </main>
 
@@ -116,4 +111,3 @@ export default function App() {
     </div>
   );
 }
-

@@ -4,15 +4,15 @@ import { aboutData } from '../data/portfolioData';
 
 export default function About() {
   return (
-    <section id="about" className="py-20 lg:py-24 border-t border-slate-900">
+    <section id="about" className="py-16 lg:py-20 border-t border-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Title */}
-        <div className="mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-2">
+        <div className="mb-10">
+          <h2 className="text-3xl font-bold text-white tracking-tight mb-2">
             {aboutData.title}
           </h2>
-          <p className="text-sm text-cyanAccent-400 font-medium">
+          <p className="text-xs font-semibold uppercase tracking-wider text-cyanAccent-400">
             Background &bull; Exposure &bull; Trajectory
           </p>
         </div>

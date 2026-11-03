@@ -4,8 +4,7 @@ import { personalData } from '../data/portfolioData';
 
 const navLinks = [
   { name: 'About', href: '#about' },
-  { name: 'Expertise', href: '#expertise' },
-  { name: 'EdTech', href: '#edtech' },
+  { name: 'Interests', href: '#interests' },
   { name: 'Experience', href: '#experience' },
   { name: 'Projects', href: '#projects' },
   { name: 'Content Architecture', href: '#content-architecture' },
