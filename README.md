@@ -6,8 +6,16 @@ Modern, recruiter-focused personal portfolio website for **Aishwarya Kumari**, p
 
 ## 🚀 Live Preview & Deployment
 - **Built with**: React 18, Vite, Tailwind CSS, Lucide Icons
-- **Ready to deploy** to Netlify, Vercel, or GitHub Pages immediately.
+- **Vercel-ready** with SPA routing, production asset caching, and security headers configured in `vercel.json`.
 - **Production Build Directory**: `dist/`
+
+### Deploy to Vercel
+
+1. Import this repository into Vercel.
+2. Keep the Vite framework preset and the project defaults: `npm run build` for the build command and `dist` for the output directory. These are also declared in `vercel.json`.
+3. Deploy. No environment variables or server-side functions are required.
+
+The Vercel rewrite serves the app for direct visits to client-side routes. Hashed files in `/assets/` are cached as immutable; HTML and other files are revalidated. Add a custom domain in the Vercel project settings when you are ready to use a permanent production URL. Netlify deployment remains supported by `netlify.toml`.
 
 ---
 
@@ -78,7 +86,7 @@ The website will automatically display the new project with live links without a
 ## 💻 Available Scripts
 
 - **`npm run dev`**: Starts local Vite development server at `http://localhost:3000`
-- **`npm run build`**: Compiles production assets into `dist/` with minification and gzip optimization
+- **`npm run build`**: Compiles and minifies production assets into `dist/`
 - **`npm run preview`**: Previews the production build locally
 
 ---
@@ -87,4 +95,3 @@ The website will automatically display the new project with live links without a
 - **Colors**: Deep Navy Blue (`#040814`, `#070f26`), Charcoal Black (`#111827`), Electric Blue (`#2563eb`), Subtle Cyan (`#06b6d4`, `#38bdf8`), Slate White (`#f8fafc`).
 - **Typography**: Inter & Plus Jakarta Sans.
 - **Tone**: Recruiter-focused, authoritative yet approachable, grounded early-career professional credibility.
-

@@ -17,8 +17,7 @@ export const personalData = {
   introduction:
     "Exploring the intersection of Applied AI and EdTech, with an interest in digital learning solutions, web development, emerging technologies and structured content architecture.",
   heroBio:
-    "BTech graduate focused on EdTech, Applied AI, and emerging technologies. 
-    Gaining experience in web development, application development, and content architecture.",
+    "BTech graduate focused on EdTech, Applied AI, and emerging technologies. Gaining experience in web development, application development, and content architecture.",
   location: "India",
   email: "improaish@gmail.com",
   profileImage: "/aishwarya_image.jpg",
