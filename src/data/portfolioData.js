@@ -122,7 +122,7 @@ export const experienceData = [
   {
     id: "eisystems",
     organization: "EISystems Technologies",
-    role: "Ethical Hacking and Penetration Testing Intern",
+    role: "Data Science Intern",
     duration: "March 2026 \u2013 May 2026",
     location: "Ghaziabad, Uttar Pradesh, India",
     status: "Completed"
@@ -230,7 +230,6 @@ export const activitiesData = [
     organizer: "Google Developers Group (GDG)",
     year: "2025",
     description: "Attended DevFest 2025 covering AI-related sessions on how AI is evolving and its real-world applications.",
-    isPlaceholder: true
   },
   {
     id: "devfest-2026",
@@ -239,7 +238,6 @@ export const activitiesData = [
     organizer: "Google Developers Group (GDG)",
     year: "2026",
     description: "Joined the Google Developer Groups community for DevFest 2026.",
-    isPlaceholder: true
   },
   {
     id: "gdg-workshops-2026",
@@ -248,7 +246,6 @@ export const activitiesData = [
     organizer: "Google Developers Group (GDG)",
     year: "2026",
     description: "Participated in various hands-on workshops organized by Google Developers Group.",
-    isPlaceholder: true
   },
   {
     id: "salesforce-meetup-2026",
@@ -257,7 +254,6 @@ export const activitiesData = [
     organizer: "Trailblazer Community",
     year: "2026",
     description: "Attended Salesforce community meetup organized by the Trailblazer Community.",
-    isPlaceholder: true
   },
   {
     id: "nss-volunteering",
@@ -350,7 +346,7 @@ export const certificationsData = [
   {
     id: "cyber-jib-forage",
     category: "Cybersecurity",
-    name: "Cyber Jib Simulation",
+    name: "Cyber Job Simulation",
     issuer: "Forage",
     image: "",
     verificationUrl: ""

@@ -52,16 +52,9 @@ export default function Activities() {
                 key={activity.id}
                 className="p-5 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition-colors duration-200"
               >
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-sm sm:text-base font-bold text-white leading-snug">
-                    {activity.title}
-                  </h3>
-                  {activity.isPlaceholder && (
-                    <span className="shrink-0 rounded-full border border-slate-700 px-2 py-1 text-[10px] font-medium text-slate-400">
-                      Details to add
-                    </span>
-                  )}
-                </div>
+                <h3 className="text-sm sm:text-base font-bold text-white leading-snug">
+                  {activity.title}
+                </h3>
 
                 <p className="mt-2 text-xs font-medium text-cyanAccent-400">
                   {activity.eventName}
