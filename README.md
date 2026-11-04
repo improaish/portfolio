@@ -1,6 +1,6 @@
 # Aishwarya Kumari - Premium Professional Portfolio Website
 
-Modern, recruiter-focused personal portfolio website for **Aishwarya Kumari**, presenting an early-career candidate with an academic background in **Artificial Intelligence**, an industry interest in **Educational Technology (EdTech)** and **Emerging Technologies**, and complementary expertise in **Content Architecture**.
+Modern, recruiter-focused personal portfolio website for **Aishwarya Kumari**, presenting an early-career candidate with an academic background in **Artificial Intelligence**, an industry interest in **Educational Technology (EdTech)** and **Emerging Technologies**, and complementary expertise in **Content Strategy**.
 
 ---
 
@@ -29,13 +29,17 @@ Tech Portfoilo/
 │   ├── favicon.svg            # Custom modern monogram favicon
 │   └── index.html             # SEO-optimized HTML with OpenGraph tags
 ├── public/
+│   ├── assets/
+│   │   └── activities/        # Original event and community photos
 │   ├── aishwarya_image.jpg    # Public profile image
 │   └── favicon.svg            # Monogram favicon
 ├── src/
 │   ├── assets/                # Profile and graphic assets
 │   ├── components/            # Modular React components
 │   │   ├── About.jsx          # Split-layout narrative and highlights
+│   │   ├── Activities.jsx     # Responsive activity gallery and photo preview
 │   │   ├── BrandIcons.jsx     # Clean SVG brand icons (LinkedIn, GitHub)
+│   │   ├── Certifications.jsx # Categorized professional courses and credentials
 │   │   ├── Contact.jsx        # Direct outreach, email, LinkedIn & message form
 │   │   ├── ContentArchitecture.jsx # 8 content architecture & structuring cards
 │   │   ├── EdTechSection.jsx  # "Technology Meets Education" 3 visual cards
@@ -80,6 +84,14 @@ Open `src/data/portfolioData.js` and locate `projectsData`. Simply update or add
 ```
 
 The website will automatically display the new project with live links without altering any layout or CSS.
+
+## Updating Activities and Certifications
+
+Edit `activitiesData`, `activityPhotosData`, and `certificationsData` in `src/data/portfolioData.js` to add or update entries without changing the layout components.
+
+- Put activity photos in `public/assets/activities/` and add their paths, meaningful `imageAlt` text, and a `size` (`panoramic`, `square`, or `portrait`) to `activityPhotosData`. The collage uses each photo's shape for its tile size and keeps the full image visible beside the text-only activity list. `isPlaceholder: true` marks event details that still need confirmation.
+- Put certificate scans in `public/assets/certificates/` and set the credential's `image` path. Add a real `verificationUrl` when one is available; leave it empty until then. Verification links are shown only for HTTP(S) URLs.
+- The supplied activity photos are kept in their original form. The listed course names and issuers are present, but certificate scans and verification links have not been supplied.
 
 ---
 

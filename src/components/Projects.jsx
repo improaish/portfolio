@@ -17,7 +17,7 @@ export default function Projects() {
               Featured Project
             </h2>
             <p className="text-sm text-slate-400">
-              Practical work in Content Architecture and digital learning solutions.
+              Practical work in Content Strategy and digital learning solutions.
             </p>
           </div>
 

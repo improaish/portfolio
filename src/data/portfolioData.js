@@ -15,9 +15,9 @@ export const personalData = {
     "Content Strategy"
   ],
   introduction:
-    "Exploring the intersection of Applied AI and EdTech, with an interest in digital learning solutions, web development, emerging technologies and structured content architecture.",
+    "Exploring the intersection of Applied AI and EdTech, with an interest in digital learning solutions, web development, emerging technologies, and content strategy.",
   heroBio:
-    "BTech graduate focused on EdTech, Applied AI, and emerging technologies. Gaining experience in web development, application development, and content architecture.",
+    "BTech graduate focused on EdTech, Applied AI, and emerging technologies. Gaining experience in web development, application development, and content strategy.",
   location: "India",
   email: "improaish@gmail.com",
   profileImage: "/aishwarya_image.jpg",
@@ -38,7 +38,7 @@ export const aboutData = {
     "I have an academic background in Computer Science and Engineering (Artificial Intelligence) and Electronics Engineering, with a strong focus on EdTech and emerging technologies.",
     "My core interests include EdTech, Applied AI, Machine Learning, Web Development, Application Development, and modern technology-driven solutions.",
     "Through practical internships, I have gained hands-on exposure to software development, Applied AI assistance, and embedded systems.",
-    "Beyond development, I specialize in Content Architecture\u2014focusing on structured information design, content strategy, and creating intuitive digital learning experiences."
+    "Beyond development, I focus on content strategy, structured information design, and creating intuitive digital learning experiences."
   ],
   highlights: [
     {
@@ -48,13 +48,8 @@ export const aboutData = {
     },
     {
       label: "Primary Focus",
-      value: "EdTech & Applied AI",
+      value: "EdTech, Applied AI & Content Strategy",
       detail: "Smart digital learning platforms"
-    },
-    {
-      label: "Capability",
-      value: "Content Architecture",
-      detail: "Structured information & digital strategy"
     }
   ]
 };
@@ -98,6 +93,12 @@ export const interestsData = [
     title: "Emerging Technologies",
     description: "Exploring next-generation technologies and their practical real-world applications.",
     icon: "Compass"
+  },
+  {
+    id: "content-strategy",
+    title: "Content Strategy",
+    description: "Planning clear, useful content experiences for digital products and learning.",
+    icon: "Target"
   }
 ];
 
@@ -157,11 +158,11 @@ export const projectsData = [
     id: "digital-learning-content-hub",
     title: "Digital Learning Content Hub",
     status: "Coming Soon",
-    category: "EdTech & Content Architecture",
+    category: "EdTech & Content Strategy",
     description:
-      "A structured educational repository demonstrating intuitive information architecture, taxonomic hierarchy, and accessible digital learning pathways.",
+      "A structured educational repository demonstrating clear content strategy, taxonomic hierarchy, and accessible digital learning pathways.",
     technologies: [
-      "Content Architecture",
+      "Content Strategy",
       "EdTech",
       "Information Design",
       "Web Development",
@@ -171,17 +172,11 @@ export const projectsData = [
   }
 ];
 
-export const contentArchitectureData = {
-  title: "Content Architecture",
+export const contentStrategyData = {
+  title: "Content Strategy",
   description:
-    "Structuring digital content for clarity, discoverability, and engaging user experiences.",
+    "Planning and shaping digital content for clarity, discoverability, and engaging user experiences.",
   cards: [
-    {
-      id: "info-arch",
-      title: "Information Architecture",
-      description: "Organizing taxonomies, navigation flows, and intuitive hierarchies.",
-      icon: "Network"
-    },
     {
       id: "content-strategy",
       title: "Content Strategy",
@@ -231,30 +226,134 @@ export const activitiesData = [
   {
     id: "devfest-2025",
     title: "DevFest 2025",
+    eventName: "DevFest 2025",
     organizer: "Google Developers Group (GDG)",
     year: "2025",
-    description: "Attended DevFest 2025 covering AI-related sessions on how AI is evolving and its real-world applications."
+    description: "Attended DevFest 2025 covering AI-related sessions on how AI is evolving and its real-world applications.",
+    isPlaceholder: true
   },
   {
     id: "devfest-2026",
     title: "DevFest 2026",
+    eventName: "DevFest 2026",
     organizer: "Google Developers Group (GDG)",
     year: "2026",
-    description: "Attended DevFest 2026 featuring sessions on the latest in Google technologies, web, and AI."
+    description: "Joined the Google Developer Groups community for DevFest 2026.",
+    isPlaceholder: true
   },
   {
     id: "gdg-workshops-2026",
     title: "GDG Workshops",
+    eventName: "Google Developer Groups workshops",
     organizer: "Google Developers Group (GDG)",
     year: "2026",
-    description: "Participated in various hands-on workshops organized by Google Developers Group."
+    description: "Participated in various hands-on workshops organized by Google Developers Group.",
+    isPlaceholder: true
   },
   {
     id: "salesforce-meetup-2026",
     title: "Salesforce Meetup",
+    eventName: "Salesforce community meetup",
     organizer: "Trailblazer Community",
     year: "2026",
-    description: "Attended Salesforce community meetup organized by the Trailblazer Community."
+    description: "Attended Salesforce community meetup organized by the Trailblazer Community.",
+    isPlaceholder: true
+  },
+  {
+    id: "nss-volunteering",
+    title: "NSS Volunteering",
+    eventName: "National Service Scheme community volunteering",
+    organizer: "National Service Scheme (NSS)",
+    year: "",
+    description: "Volunteered with NSS in community service and student engagement activities."
+  }
+];
+
+export const activityPhotosData = [
+  {
+    id: "gdg-devfest-speaking-engagement",
+    title: "DevFest 2026",
+    image: "/assets/activities/gdg-devfest-speaking-engagement.jpeg",
+    imageAlt: "Aishwarya speaking at a Google Developer Groups event",
+    size: "panoramic"
+  },
+  {
+    id: "nss-volunteering",
+    title: "NSS volunteering",
+    image: "/assets/activities/nss-clean-india-mission.jpeg",
+    imageAlt: "Participating in an NSS community volunteering activity",
+    size: "square"
+  },
+  {
+    id: "nss-volunteering-street-play",
+    title: "NSS volunteering",
+    image: "/assets/activities/nss-nukkad-natak.jpeg",
+    imageAlt: "Students taking part in an NSS street play",
+    size: "square"
+  },
+  {
+    id: "topper-award-photo",
+    title: "Academic award",
+    image: "/assets/activities/topper-award-ceremony.jpeg",
+    imageAlt: "Receiving an academic award at a ceremony",
+    size: "square"
+  },
+  {
+    id: "nielit-visit-photo",
+    title: "NIELIT visit",
+    image: "/assets/activities/nielit-muzaffarpur-visit.jpeg",
+    imageAlt: "At the NIELIT Muzaffarpur centre",
+    size: "portrait"
+  },
+  {
+    id: "certificate-presentation-photo",
+    title: "Certificate receiving",
+    image: "/assets/activities/certificate-presentation.jpeg",
+    imageAlt: "Receiving a certificate at an event",
+    size: "square"
+  }
+];
+
+export const certificationsData = [
+  {
+    id: "machine-learning-minus-robotics",
+    category: "AI & Machine Learning",
+    name: "Machine Learning",
+    issuer: "Minus Robotics and Coding",
+    image: "",
+    verificationUrl: ""
+  },
+  {
+    id: "ai-in-management-nptel",
+    category: "AI & Machine Learning",
+    name: "AI in Management",
+    issuer: "NPTEL",
+    image: "",
+    verificationUrl: ""
+  },
+  {
+    id: "cloud-computing-nptel",
+    category: "Cloud & Computing",
+    name: "Cloud Computing",
+    issuer: "NPTEL",
+    image: "",
+    verificationUrl: ""
+  },
+  {
+    id: "content-strategy-seo-zaptriq",
+    category: "Content & Digital Strategy",
+    name: "Content Strategy & SEO",
+    issuer: "Zaptriq AI Academy",
+    image: "",
+    verificationUrl: ""
+  },
+  {
+    id: "cyber-jib-forage",
+    category: "Cybersecurity",
+    name: "Cyber Jib Simulation",
+    issuer: "Forage",
+    image: "",
+    verificationUrl: ""
   }
 ];
 

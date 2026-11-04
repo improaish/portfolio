@@ -5,7 +5,8 @@ import {
   Cpu,
   Globe,
   Layers,
-  Compass
+  Compass,
+  Target
 } from 'lucide-react';
 import { interestsData } from '../data/portfolioData';
 
@@ -15,7 +16,8 @@ const iconMap = {
   Cpu,
   Globe,
   Layers,
-  Compass
+  Compass,
+  Target
 };
 
 export default function Expertise() {

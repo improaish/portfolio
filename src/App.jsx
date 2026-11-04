@@ -8,6 +8,7 @@ import Projects from './components/Projects';
 import ContentArchitecture from './components/ContentArchitecture';
 import Education from './components/Education';
 import Activities from './components/Activities';
+import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Toast from './components/Toast';
@@ -27,9 +28,10 @@ export default function App() {
       'interests',
       'experience',
       'projects',
-      'content-architecture',
+      'content-strategy',
       'education',
       'activities',
+      'certifications',
       'contact'
     ];
 
@@ -99,6 +101,7 @@ export default function App() {
         <ContentArchitecture />
         <Education />
         <Activities />
+        <Certifications />
         <Contact onCopyEmail={handleCopyEmail} emailCopied={emailCopied} />
       </main>
 

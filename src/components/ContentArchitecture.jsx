@@ -1,14 +1,12 @@
 import React from 'react';
 import {
-  Network,
   Target,
   SearchCheck,
   BookOpenCheck
 } from 'lucide-react';
-import { contentArchitectureData } from '../data/portfolioData';
+import { contentStrategyData } from '../data/portfolioData';
 
 const iconMap = {
-  Network,
   Target,
   SearchCheck,
   BookOpenCheck
@@ -16,23 +14,22 @@ const iconMap = {
 
 export default function ContentArchitecture() {
   return (
-    <section id="content-architecture" className="py-16 lg:py-20 border-t border-slate-900">
+    <section id="content-strategy" className="py-16 lg:py-20 border-t border-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="max-w-2xl mb-10">
           <h2 className="text-3xl font-bold text-white tracking-tight mb-2">
-            {contentArchitectureData.title}
+            {contentStrategyData.title}
           </h2>
           <p className="text-sm text-slate-400">
-            {contentArchitectureData.description}
+            {contentStrategyData.description}
           </p>
         </div>
 
-        {/* 4 Clean Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {contentArchitectureData.cards.map((card) => {
-            const Icon = iconMap[card.icon] || Network;
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {contentStrategyData.cards.map((card) => {
+            const Icon = iconMap[card.icon] || Target;
             return (
               <div
                 key={card.id}
