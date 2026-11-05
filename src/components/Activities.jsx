@@ -127,6 +127,7 @@ export default function Activities() {
                     src={photo.image}
                     alt={photo.imageAlt}
                     loading="lazy"
+                    style={{ objectPosition: photo.objectPosition || 'center' }}
                     className="h-full w-full object-cover object-center transition-transform duration-300"
                   />
                   <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-950/90 to-transparent px-3 pb-3 pt-8 text-xs font-medium text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">

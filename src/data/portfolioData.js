@@ -397,13 +397,15 @@ export const activityPhotosData = [
     title: "DevFest 2026",
     image: "/assets/activities/gdg-devfest-speaking-engagement.jpeg",
     imageAlt: "Aishwarya speaking at a Google Developer Groups event",
-    size: "panoramic"
+    objectPosition: "center center",
+    size: "square"
   },
   {
     id: "nss-volunteering",
     title: "NSS volunteering",
     image: "/assets/activities/nss-clean-india-mission.jpeg",
     imageAlt: "Participating in an NSS community volunteering activity",
+    objectPosition: "center top",
     size: "square"
   },
   {
@@ -411,6 +413,7 @@ export const activityPhotosData = [
     title: "NSS volunteering",
     image: "/assets/activities/nss-nukkad-natak.jpeg",
     imageAlt: "Students taking part in an NSS street play",
+    objectPosition: "center 65%",
     size: "square"
   },
   {
@@ -418,6 +421,7 @@ export const activityPhotosData = [
     title: "Academic award",
     image: "/assets/activities/topper-award-ceremony.jpeg",
     imageAlt: "Receiving an academic award at a ceremony",
+    objectPosition: "center 15%",
     size: "square"
   },
   {
@@ -425,6 +429,7 @@ export const activityPhotosData = [
     title: "NIELIT visit",
     image: "/assets/activities/nielit-muzaffarpur-visit.jpeg",
     imageAlt: "At the NIELIT Muzaffarpur centre",
+    objectPosition: "center 40%",
     size: "portrait"
   },
   {
@@ -432,6 +437,7 @@ export const activityPhotosData = [
     title: "Certificate receiving",
     image: "/assets/activities/certificate-presentation.jpeg",
     imageAlt: "Receiving a certificate at an event",
+    objectPosition: "center 20%",
     size: "square"
   }
 ];
@@ -546,6 +552,14 @@ export const certificationsData = [
     category: "Technical Writing",
     name: "LaTeX Training",
     issuer: "Spoken Tutorial Project at IIT Bombay",
+    image: "",
+    verificationUrl: ""
+  },
+  {
+    id: "kyp-bsdm",
+    category: "Professional Skills",
+    name: "KYP (Kushal Yuva Program)",
+    issuer: "Bihar Skill Development Mission (BSDM)",
     image: "",
     verificationUrl: ""
   }
