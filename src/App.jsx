@@ -6,6 +6,7 @@ import Expertise from './components/Expertise';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
 import ContentArchitecture from './components/ContentArchitecture';
+import WritingSamples from './components/WritingSamples';
 import Education from './components/Education';
 import Activities from './components/Activities';
 import Certifications from './components/Certifications';
@@ -29,6 +30,7 @@ export default function App() {
       'experience',
       'projects',
       'content-strategy',
+      'writing-samples',
       'education',
       'activities',
       'certifications',
@@ -99,6 +101,7 @@ export default function App() {
         <Experience />
         <Projects />
         <ContentArchitecture />
+        <WritingSamples />
         <Education />
         <Activities />
         <Certifications />

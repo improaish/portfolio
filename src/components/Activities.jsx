@@ -52,13 +52,33 @@ export default function Activities() {
                 key={activity.id}
                 className="p-5 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition-colors duration-200"
               >
-                <h3 className="text-sm sm:text-base font-bold text-white leading-snug">
-                  {activity.title}
-                </h3>
+                <div className="flex items-start gap-3">
+                  {activity.image && (
+                    <a
+                      href={activity.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Read ${activity.title} on Pratilipi (opens in a new tab)`}
+                      className="shrink-0 rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyanAccent-400"
+                    >
+                      <img
+                        src={activity.image}
+                        alt={activity.imageAlt || ""}
+                        loading="lazy"
+                        className="h-20 w-14 rounded-md border border-slate-700 object-cover"
+                      />
+                    </a>
+                  )}
+                  <div className="min-w-0">
+                    <h3 className="text-sm sm:text-base font-bold text-white leading-snug">
+                      {activity.title}
+                    </h3>
 
-                <p className="mt-2 text-xs font-medium text-cyanAccent-400">
-                  {activity.eventName}
-                </p>
+                    <p className="mt-2 text-xs font-medium text-cyanAccent-400">
+                      {activity.eventName}
+                    </p>
+                  </div>
+                </div>
 
                 <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-400">
                   <span className="inline-flex items-center gap-1.5">
@@ -76,6 +96,17 @@ export default function Activities() {
                 <p className="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed">
                   {activity.description}
                 </p>
+                {activity.url && (
+                  <a
+                    href={activity.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex text-xs font-medium text-cyanAccent-400 hover:text-cyanAccent-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyanAccent-400"
+                  >
+                    Read the novel on Pratilipi
+                    <span className="ml-1" aria-hidden="true">↗</span>
+                  </a>
+                )}
               </article>
             ))}
           </div>
